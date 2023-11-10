@@ -46,14 +46,14 @@ p_hwstat equ 0
 ;     bit 4 (pin 19): in  PRT  print switch
 ;     bit 3 (pin 6):  in  SMB  print mode switch
 ;     bit 2 (pin 5):  in  SMA  print mode switch
-;     bit 1 (pin 4):  n/c
+;     bit 1 (pin 4):  n/c may be used as an input by factory test
 ;     bit 0 (pin 3):  in  CON  calculator control line (41C on?)
 
 ; port 1:
 p_home equ 1
 p_motor equ 1
 ;     bit 7 (pin 25): in  HOME printer mech home switch
-;     bit 6 (pin 24): n/c
+;     bit 6 (pin 24): n/c may be used as an input by factory test
 ;     bit 5 (pin 23): n/c
 ;     bit 4 (pin 22): n/c
 ;     bit 3 (pin 34): out RBRK reverse motor brake
@@ -74,7 +74,7 @@ p_npic equ 4
 
 ; port 5: printhead drive
 p_printhead equ 5
-;     bit 7 (pin 26): n/c
+;     bit 7 (pin 26): n/c may be used as an input by factory test
 ;     bit 6 (pin 27): out R1 
 ;     bit 5 (pin 28): out R2
 ;     bit 4 (pin 29): out R3
@@ -180,7 +180,7 @@ reset:          li   0x10
 				; timer interrupt enabled, external interrupt disabled
 
                 ins  p_home
-                sl   1		; XXX why checking bit 6? - possibly factory test
+                sl   1		; XXX why checking P16? - possibly factory test
                 bm   a001d
                 jmp  a02f4
 
@@ -899,7 +899,7 @@ a0372:          di
                 lr   r5,a
                 lis  0x0
                 outs p_npic
-                ins  p_printhead	; XXX why test P47? not connected
+                ins  p_printhead	; XXX why test P57? not connected
                 bm   a0389
                 lr   a,r5
                 com
