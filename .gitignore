@@ -1,0 +1,12 @@
+*.p
+*~
+*.bin
+*.hex
+*.lst
+*.dis
+*.hd
+*.pdf
+*.save
+*.html
+*.txt
+*.py
